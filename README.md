@@ -2,7 +2,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### 1. Environment Variables Setup
+
+Before running the application, you need to set up your environment variables. Copy the template file and configure it:
+
+```bash
+cp env.template .env.local
+```
+
+Then edit `.env.local` with your actual values:
+
+- **Clerk Authentication**: Get your keys from [Clerk Dashboard](https://dashboard.clerk.com/)
+- **Ayrshare Integration**: Configure your Ayrshare API keys and domain
+- **N8N Webhooks**: Set your N8N webhook URLs for video processing
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
@@ -16,9 +42,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Security Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ✅ All API keys and secrets use environment variables
+- ✅ No hardcoded credentials in source code
+- ✅ Webhook URLs are configurable via environment variables
+- ✅ Proper authentication middleware for protected routes
 
 ## Learn More
 
@@ -32,5 +61,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+**Important**: Make sure to configure all environment variables in your Vercel deployment settings.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
