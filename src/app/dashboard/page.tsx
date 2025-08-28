@@ -79,14 +79,7 @@ interface AIImage {
   createdAt: string;
 }
 
-interface SocialPlatform {
-  name: string;
-  icon: React.ReactNode;
-  connected: boolean;
-  followers: string;
-  engagement: string;
-  accountData?: unknown;
-}
+
 
 interface RecentActivity {
   id: string;
@@ -315,28 +308,28 @@ export default function Dashboard() {
   ];
 
   // Create social platforms data from Ayrshare data
-  const getAllPlatforms = () => {
-    const allPlatforms = [
-      {
-        key: "youtube",
-        name: "YouTube",
-        icon: <Youtube className="h-5 w-5 text-red-500" />,
-      },
-      {
-        key: "instagram",
-        name: "Instagram",
-        icon: <Instagram className="h-5 w-5 text-pink-500" />,
-      },
-      {
-        key: "twitter",
-        name: "X (Twitter)",
-        icon: <Twitter className="h-5 w-5 text-blue-500" />,
-      },
-      {
-        key: "facebook",
-        name: "Facebook",
-        icon: <Facebook className="h-5 w-5 text-blue-600" />,
-      },
+  // const getAllPlatforms = () => {
+    // const allPlatforms = [
+      // {
+      //   key: "youtube",
+      //   name: "YouTube",
+      //   icon: <Youtube className="h-5 w-5 text-red-500" />,
+      // },
+      // {
+      //   key: "instagram",
+      //   name: "Instagram",
+      //   icon: <Instagram className="h-5 w-5 text-pink-500" />,
+      // },
+      // {
+      //   key: "twitter",
+      //   name: "X (Twitter)",
+      //   icon: <Twitter className="h-5 w-5 text-blue-500" />,
+      // },
+      // {
+      //   key: "facebook",
+      //   name: "Facebook",
+      //   icon: <Facebook className="h-5 w-5 text-blue-600" />,
+      // },
       {
         key: "linkedin",
         name: "LinkedIn",
@@ -406,7 +399,7 @@ export default function Dashboard() {
 
   // Platform data is available through getAllPlatforms() if needed
 
-  const recentActivity: RecentActivity[] = [
+  // const recentActivity: RecentActivity[] = [
     {
       id: "1",
       action: "Published video",
@@ -994,7 +987,7 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("tiktok")
-                          ? formatNumber(getPlatformMetrics("tiktok").views)
+                          ? formatNumber(getPlatformMetrics("tiktok")?.views || 0)
                           : "-"}
                       </span>
                     </div>
@@ -1018,7 +1011,7 @@ export default function Dashboard() {
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("facebook")
                           ? formatNumber(
-                              getPlatformMetrics("facebook").reactions
+                              getPlatformMetrics("facebook")?.reactions || 0
                             )
                           : "-"}
                       </span>
@@ -1029,7 +1022,7 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("instagram")
-                          ? formatNumber(getPlatformMetrics("instagram").likes)
+                          ? formatNumber(getPlatformMetrics("instagram")?.likes || 0)
                           : "-"}
                       </span>
                     </div>
@@ -1037,7 +1030,7 @@ export default function Dashboard() {
                       <span className="text-sm font-medium">YouTube Likes</span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("youtube")
-                          ? formatNumber(getPlatformMetrics("youtube").likes)
+                          ? formatNumber(getPlatformMetrics("youtube")?.likes || 0)
                           : "-"}
                       </span>
                     </div>
@@ -1047,7 +1040,7 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("tiktok")
-                          ? formatNumber(getPlatformMetrics("tiktok").comments)
+                          ? formatNumber(getPlatformMetrics("tiktok")?.comments || 0)
                           : "-"}
                       </span>
                     </div>
@@ -1279,7 +1272,7 @@ export default function Dashboard() {
                     <div className="aspect-square relative mb-4 overflow-hidden rounded-lg bg-muted">
                       <img
                         src={image.url}
-                        alt={image.title}
+                        alt={image.title || "AI generated image"}
                         className="object-cover w-full h-full"
                       />
                     </div>

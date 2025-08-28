@@ -216,15 +216,14 @@ export class AyrshareService {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-
+        await response.json();
         return null;
       }
 
       const data = await response.json();
 
       return data;
-    } catch (error) {
+    } catch {
       return null;
     }
   }
@@ -286,8 +285,8 @@ export class AyrshareService {
     try {
       const jwtResponse = await this.generateJWT(profileKey, options);
       return jwtResponse?.ssoUrl || null;
-    } catch (error) {
-      console.error("Error generating SSO URL:", error);
+    } catch {
+      console.error("Error generating SSO URL");
       return null;
     }
   }

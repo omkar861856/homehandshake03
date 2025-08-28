@@ -242,11 +242,10 @@ const VideoUploadModalContent = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      let result;
       try {
-        result = await response.json();
+        await response.json();
       } catch {
-        result = {};
+        // Ignore JSON parsing errors
       }
 
       alert(

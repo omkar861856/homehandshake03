@@ -97,7 +97,7 @@ export function AyrshareProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [extractProfileKey]);
 
   const openSSOLogin = useCallback(
     async (options?: {

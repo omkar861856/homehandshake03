@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     const analyticsData = await analyticsResponse.json();
 
     return NextResponse.json(analyticsData);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch analytics data" },
       { status: 500 }

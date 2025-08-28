@@ -46,41 +46,26 @@ export const SelectTrigger = React.forwardRef<
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     isOpen?: boolean;
     setIsOpen?: (open: boolean) => void;
-    selectedValue?: string;
-    onSelect?: (value: string) => void;
   }
->(
-  (
-    {
-      className,
-      children,
-      isOpen,
-      setIsOpen,
-      selectedValue,
-      onSelect,
-      ...props
-    },
-    ref
-  ) => {
-    // Filter out custom props to avoid passing them to DOM elements
-    const domProps = props;
+>(({ className, children, isOpen, setIsOpen, ...props }, ref) => {
+  // Filter out custom props to avoid passing them to DOM elements
+  const domProps = props;
 
-    return (
-      <button
-        ref={ref}
-        className={cn(
-          "flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900",
-          className
-        )}
-        onClick={() => setIsOpen?.(!isOpen)}
-        {...domProps}
-      >
-        {children}
-        <ChevronDown className="h-4 w-4 opacity-50" />
-      </button>
-    );
-  }
-);
+  return (
+    <button
+      ref={ref}
+      className={cn(
+        "flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900",
+        className
+      )}
+      onClick={() => setIsOpen?.(!isOpen)}
+      {...domProps}
+    >
+      {children}
+      <ChevronDown className="h-4 w-4 opacity-50" />
+    </button>
+  );
+});
 SelectTrigger.displayName = "SelectTrigger";
 
 export const SelectContent = ({
@@ -88,14 +73,12 @@ export const SelectContent = ({
   children,
   isOpen,
   onSelect,
-  selectedValue,
   ...props
 }: {
   className?: string;
   children: React.ReactNode;
   isOpen?: boolean;
   onSelect?: (value: string) => void;
-  selectedValue?: string;
 }) => {
   if (!isOpen) return null;
 
@@ -129,9 +112,8 @@ export const SelectItem = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & {
     value: string;
     onSelect?: (value: string) => void;
-    selectedValue?: string;
   }
->(({ className, children, value, onSelect, selectedValue, ...props }, ref) => {
+>(({ className, children, value, onSelect, ...props }, ref) => {
   // Filter out custom props to avoid passing them to DOM elements
   const domProps = props;
 

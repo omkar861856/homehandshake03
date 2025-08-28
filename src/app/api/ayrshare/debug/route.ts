@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import fs from "fs";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import path from "path";
 
 function normalizePem(pem: string): string {
@@ -19,7 +19,7 @@ function isRsaPem(pem: string): boolean {
   );
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const { userId } = await auth();
 
