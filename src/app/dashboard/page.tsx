@@ -24,18 +24,14 @@ import {
   BarChart3,
   Download,
   Edit,
-  Facebook,
   Heart,
   Image,
-  Instagram,
   Plus,
   RefreshCw,
   Share2,
   Sparkles,
   Trash2,
-  Twitter,
   Video,
-  Youtube,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -78,8 +74,6 @@ interface AIImage {
   downloads: number;
   createdAt: string;
 }
-
-
 
 interface RecentActivity {
   id: string;
@@ -309,126 +303,126 @@ export default function Dashboard() {
 
   // Create social platforms data from Ayrshare data
   // const getAllPlatforms = () => {
-    // const allPlatforms = [
-      // {
-      //   key: "youtube",
-      //   name: "YouTube",
-      //   icon: <Youtube className="h-5 w-5 text-red-500" />,
-      // },
-      // {
-      //   key: "instagram",
-      //   name: "Instagram",
-      //   icon: <Instagram className="h-5 w-5 text-pink-500" />,
-      // },
-      // {
-      //   key: "twitter",
-      //   name: "X (Twitter)",
-      //   icon: <Twitter className="h-5 w-5 text-blue-500" />,
-      // },
-      // {
-      //   key: "facebook",
-      //   name: "Facebook",
-      //   icon: <Facebook className="h-5 w-5 text-blue-600" />,
-      // },
-      {
-        key: "linkedin",
-        name: "LinkedIn",
-        icon: <Share2 className="h-5 w-5 text-blue-700" />,
-      },
-      {
-        key: "tiktok",
-        name: "TikTok",
-        icon: <Video className="h-5 w-5 text-black" />,
-      },
-      {
-        key: "pinterest",
-        name: "Pinterest",
-        icon: <Share2 className="h-5 w-5 text-red-600" />,
-      },
-      {
-        key: "reddit",
-        name: "Reddit",
-        icon: <Share2 className="h-5 w-5 text-orange-500" />,
-      },
-      {
-        key: "snapchat",
-        name: "Snapchat",
-        icon: <Share2 className="h-5 w-5 text-yellow-400" />,
-      },
-      {
-        key: "telegram",
-        name: "Telegram",
-        icon: <Share2 className="h-5 w-5 text-blue-400" />,
-      },
-      {
-        key: "threads",
-        name: "Threads",
-        icon: <Share2 className="h-5 w-5 text-black" />,
-      },
-      {
-        key: "bluesky",
-        name: "Bluesky",
-        icon: <Share2 className="h-5 w-5 text-blue-300" />,
-      },
-      {
-        key: "gmb",
-        name: "Google Business",
-        icon: <Share2 className="h-5 w-5 text-blue-500" />,
-      },
-    ];
+  //   const allPlatforms = [
+  //     {
+  //       key: "youtube",
+  //       name: "YouTube",
+  //       icon: <Youtube className="h-5 w-5 text-red-500" />,
+  //     },
+  //     {
+  //       key: "instagram",
+  //       name: "Instagram",
+  //       icon: <Instagram className="h-5 w-5 text-pink-500" />,
+  //     },
+  //     {
+  //       key: "twitter",
+  //       name: "X (Twitter)",
+  //       icon: <Twitter className="h-5 w-5 text-blue-500" />,
+  //     },
+  //     {
+  //       key: "facebook",
+  //       name: "Facebook",
+  //       icon: <Facebook className="h-5 w-5 text-blue-600" />,
+  //     },
+  //     {
+  //       key: "linkedin",
+  //       name: "LinkedIn",
+  //       icon: <Share2 className="h-5 w-5 text-blue-700" />,
+  //     },
+  //     {
+  //       key: "tiktok",
+  //       name: "TikTok",
+  //       icon: <Video className="h-5 w-5 text-black" />,
+  //     },
+  //     {
+  //       key: "pinterest",
+  //       name: "Pinterest",
+  //       icon: <Share2 className="h-5 w-5 text-red-600" />,
+  //     },
+  //     {
+  //       key: "reddit",
+  //       name: "Reddit",
+  //       icon: <Share2 className="h-5 w-5 text-orange-500" />,
+  //     },
+  //     {
+  //       key: "snapchat",
+  //       name: "Snapchat",
+  //       icon: <Share2 className="h-5 w-5 text-yellow-400" />,
+  //     },
+  //     {
+  //       key: "telegram",
+  //       name: "Telegram",
+  //       icon: <Share2 className="h-5 w-5 text-blue-400" />,
+  //     },
+  //     {
+  //       key: "threads",
+  //       name: "Threads",
+  //       icon: <Share2 className="h-5 w-5 text-black" />,
+  //     },
+  //     {
+  //       key: "bluesky",
+  //       name: "Bluesky",
+  //       icon: <Share2 className="h-5 w-5 text-blue-300" />,
+  //     },
+  //     {
+  //       key: "gmb",
+  //       name: "Google Business",
+  //       icon: <Share2 className="h-5 w-5 text-blue-500" />,
+  //     },
+  //   ];
 
-    return allPlatforms.map((platform) => {
-      const connectedAccount = ayrshareData?.displayNames?.find(
-        (account) => account.platform === platform.key
-      );
-      const isConnected =
-        ayrshareData?.activeSocialAccounts?.includes(platform.key) || false;
+  //   return allPlatforms.map((platform) => {
+  //     const connectedAccount = ayrshareData?.displayNames?.find(
+  //       account => account.platform === platform.key
+  //     );
+  //     const isConnected =
+  //       ayrshareData?.activeSocialAccounts?.includes(platform.key) || false;
 
-      return {
-        name: platform.name,
-        icon: platform.icon,
-        connected: isConnected,
-        followers: connectedAccount?.displayName || "Not connected",
-        engagement: connectedAccount?.username
-          ? `@${connectedAccount.username}`
-          : "0%",
-        accountData: connectedAccount,
-      };
-    });
-  };
+  //     return {
+  //       name: platform.name,
+  //       icon: platform.icon,
+  //       connected: isConnected,
+  //       followers: connectedAccount?.displayName || "Not connected",
+  //       engagement: connectedAccount?.username
+  //         ? `@${connectedAccount.username}`
+  //         : "0%",
+  //       accountData: connectedAccount,
+  //     };
+  //   });
+  // };
 
   // Platform data is available through getAllPlatforms() if needed
 
   // const recentActivity: RecentActivity[] = [
-    {
-      id: "1",
-      action: "Published video",
-      item: "AI Tutorial: Getting Started",
-      time: "2 hours ago",
-      type: "video",
-    },
-    {
-      id: "2",
-      action: "Generated image",
-      item: "Futuristic Cityscape",
-      time: "3 hours ago",
-      type: "image",
-    },
-    {
-      id: "3",
-      action: "Connected platform",
-      item: "Instagram account",
-      time: "5 hours ago",
-      type: "social",
-    },
-    {
-      id: "4",
-      action: "Reached milestone",
-      item: "100K total views",
-      time: "1 day ago",
-      type: "analytics",
-    },
-  ];
+  //   {
+  //     id: "1",
+  //     action: "Published video",
+  //     item: "AI Tutorial: Getting Started",
+  //     time: "2 hours ago",
+  //     type: "video",
+  //   },
+  //   {
+  //     id: "2",
+  //     action: "Generated image",
+  //     item: "Futuristic Cityscape",
+  //     time: "3 hours ago",
+  //     type: "image",
+  //   },
+  //   {
+  //     id: "3",
+  //     action: "Connected platform",
+  //     item: "Instagram account",
+  //     time: "5 hours ago",
+  //     type: "social",
+  //   },
+  //   {
+  //     id: "4",
+  //     action: "Reached milestone",
+  //     item: "100K total views",
+  //     time: "1 day ago",
+  //     type: "analytics",
+  //   },
+  // ];
 
   const getStatusBadge = (status: string) => {
     const variants = {
@@ -987,7 +981,9 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("tiktok")
-                          ? formatNumber(getPlatformMetrics("tiktok")?.views || 0)
+                          ? formatNumber(
+                              getPlatformMetrics("tiktok")?.views || 0
+                            )
                           : "-"}
                       </span>
                     </div>
@@ -1022,7 +1018,9 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("instagram")
-                          ? formatNumber(getPlatformMetrics("instagram")?.likes || 0)
+                          ? formatNumber(
+                              getPlatformMetrics("instagram")?.likes || 0
+                            )
                           : "-"}
                       </span>
                     </div>
@@ -1030,7 +1028,9 @@ export default function Dashboard() {
                       <span className="text-sm font-medium">YouTube Likes</span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("youtube")
-                          ? formatNumber(getPlatformMetrics("youtube")?.likes || 0)
+                          ? formatNumber(
+                              getPlatformMetrics("youtube")?.likes || 0
+                            )
                           : "-"}
                       </span>
                     </div>
@@ -1040,7 +1040,9 @@ export default function Dashboard() {
                       </span>
                       <span className="text-sm text-muted-foreground">
                         {analyticsData && getPlatformMetrics("tiktok")
-                          ? formatNumber(getPlatformMetrics("tiktok")?.comments || 0)
+                          ? formatNumber(
+                              getPlatformMetrics("tiktok")?.comments || 0
+                            )
                           : "-"}
                       </span>
                     </div>
@@ -1551,9 +1553,17 @@ export default function Dashboard() {
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">Profile Key</span>
                       <span className="text-sm text-muted-foreground font-mono">
-                        {user?.publicMetadata?.profileKey ||
-                          user?.id ||
-                          "Unknown"}
+                        {(() => {
+                          const profileKey = user?.publicMetadata?.profileKey;
+                          if (
+                            profileKey &&
+                            typeof profileKey === "string" &&
+                            profileKey.trim() !== ""
+                          ) {
+                            return profileKey;
+                          }
+                          return user?.id || "Unknown";
+                        })()}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
